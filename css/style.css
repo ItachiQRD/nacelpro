@@ -137,6 +137,21 @@ h3 { font-size: 1.1rem; font-weight: 600; }
   color: var(--color-text);
 }
 .btn-ghost:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, .3);
+}
+.btn-whatsapp:hover {
+  background: #1fb855;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, .4);
+}
+.hero .btn-whatsapp {
+  background: #25D366;
+  border-color: transparent;
+}
+.hero .btn-whatsapp:hover { background: #1fb855; color: #fff; }
 .btn-sm { padding: .65rem 1.1rem; font-size: .84rem; }
 .btn-block { width: 100%; }
 .btn[aria-busy="true"] { opacity: .7; pointer-events: none; }
@@ -579,6 +594,10 @@ h3 { font-size: 1.1rem; font-weight: 600; }
   display: grid; place-items: center;
   color: var(--color-primary);
 }
+.contact-ic--whatsapp {
+  background: #dcf8e8;
+  color: #25D366;
+}
 .contact-list strong {
   display: block;
   font-size: .72rem;
@@ -754,6 +773,28 @@ h3 { font-size: 1.1rem; font-weight: 600; }
 .back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
 .back-to-top:hover { background: var(--color-primary-dark); }
 
+/* ===== Bouton WhatsApp flottant ===== */
+.whatsapp-float {
+  position: fixed;
+  left: clamp(.75rem, 3vw, 1.25rem);
+  bottom: clamp(.75rem, 3vw, 1.25rem);
+  z-index: 90;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, .45);
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+}
+.whatsapp-float:hover {
+  background: #1fb855;
+  transform: scale(1.06);
+  color: #fff;
+}
+.is-hidden { display: none !important; }
+
 /* ===== Scroll reveal ===== */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -890,8 +931,12 @@ h3 { font-size: 1.1rem; font-weight: 600; }
   }
   .hero-wrap { padding-block: calc(var(--header-h) + 1rem) 1.5rem; }
   .hero h1 { font-size: 1.65rem; margin-bottom: .65rem; }
-  .hero-actions { margin-bottom: 1.25rem; }
+  .hero-actions { margin-bottom: 1.25rem; flex-direction: column; }
   .hero-actions .btn { width: 100%; }
+
+  .whatsapp-float { width: 48px; height: 48px; }
+  .whatsapp-float svg { width: 24px; height: 24px; }
+  .back-to-top { width: 40px; height: 40px; bottom: 5.5rem; }
 
   .hero-values {
     display: flex;

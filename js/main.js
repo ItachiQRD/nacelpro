@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupBackToTop();
   setupContactForm();
   setupLegalToc();
+  setupWhatsApp();
   setYear();
 });
 
@@ -243,6 +244,23 @@ function showFeedback(el, message, type) {
 function setYear() {
   const el = document.getElementById('year');
   if (el) el.textContent = new Date().getFullYear();
+}
+
+/* ===== Liens WhatsApp ===== */
+function setupWhatsApp() {
+  const config = window.NACELPRO_CONFIG || {};
+  const num = String(config.whatsappNumber || '').replace(/\D/g, '');
+  if (!num) {
+    document.querySelectorAll('[data-whatsapp]').forEach((el) => el.classList.add('is-hidden'));
+    return;
+  }
+  const text = encodeURIComponent(config.whatsappMessage || 'Bonjour, je souhaite vous contacter.');
+  const url = `https://wa.me/${num}?text=${text}`;
+  document.querySelectorAll('[data-whatsapp]').forEach((el) => {
+    el.href = url;
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener noreferrer');
+  });
 }
 
 /* ===== Sommaire actif sur la page légale ===== */
