@@ -22,6 +22,8 @@ function setupMobileMenu() {
     nav.classList.toggle('open', isOpen);
     burger.classList.toggle('open', isOpen);
     burger.setAttribute('aria-expanded', String(isOpen));
+    burger.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+    document.body.classList.toggle('menu-open', isOpen);
   };
 
   burger.addEventListener('click', () => toggle());
