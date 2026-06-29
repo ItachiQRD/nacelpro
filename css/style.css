@@ -24,8 +24,8 @@
   --shadow-sm: 0 1px 3px rgba(7, 21, 37, .06);
   --shadow-md: 0 8px 24px rgba(7, 21, 37, .08);
   --shadow-lg: 0 16px 48px rgba(7, 21, 37, .12);
-  --maxw: 1120px;
-  --maxw-narrow: 760px;
+  --maxw: 1320px;
+  --maxw-narrow: 860px;
   --transition: .22s cubic-bezier(.4, 0, .2, 1);
   --header-h: 68px;
   --section-pad: clamp(3.5rem, 7vw, 5.5rem);
@@ -53,7 +53,7 @@ ul { list-style: none; }
   width: 100%;
   max-width: var(--maxw);
   margin: 0 auto;
-  padding-inline: clamp(1.125rem, 4vw, 1.75rem);
+  padding-inline: clamp(1rem, 2vw, 1.25rem);
 }
 .container--narrow { max-width: var(--maxw-narrow); }
 
@@ -275,7 +275,7 @@ h3 { font-size: 1.1rem; font-weight: 600; }
 
 .hero-content {
   width: 100%;
-  max-width: 580px;
+  max-width: 620px;
   text-align: left;
 }
 
@@ -338,7 +338,7 @@ h3 { font-size: 1.1rem; font-weight: 600; }
 .section-alt { background: var(--color-bg-alt); }
 
 .section-head {
-  max-width: 580px;
+  max-width: 680px;
   margin: 0 auto clamp(2rem, 5vw, 3rem);
   text-align: center;
 }
@@ -820,7 +820,7 @@ h3 { font-size: 1.1rem; font-weight: 600; }
     align-items: stretch;
     gap: 0;
     margin: 0;
-    padding: 1rem clamp(1.125rem, 4vw, 1.75rem) 2rem;
+    padding: 1rem clamp(1rem, 2vw, 1.25rem) 2rem;
     background: var(--color-surface);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
