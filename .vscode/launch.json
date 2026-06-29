@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "NacelPro — serveur local",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "python -m http.server 5544",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
