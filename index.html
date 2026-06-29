@@ -78,27 +78,32 @@
   <!-- ===== Hero ===== -->
   <section class="hero">
     <div class="hero-bg" aria-hidden="true">
-      <img
-        src="assets/images/hero-nacelle.jpg"
-        alt=""
-        width="1024"
-        height="576"
-        fetchpriority="high"
-      />
+      <picture>
+        <source srcset="assets/images/hero-nacelle.webp" type="image/webp" />
+        <img
+          src="assets/images/hero-nacelle.jpg"
+          alt=""
+          width="1920"
+          height="1048"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
     </div>
     <div class="container hero-wrap">
       <div class="hero-content">
       <span class="eyebrow">Location · Vente · Conseil</span>
       <h1>Votre partenaire de confiance pour travailler en hauteur</h1>
-      <p class="lead">
+      <p class="lead lead--full">
         NacelPro est une entreprise à taille humaine, spécialisée dans la location
         et la vente de nacelles élévatrices. Nous sélectionnons un matériel fiable,
         entretenu avec rigueur, et nous nous engageons sur la ponctualité et la
         réactivité à chaque intervention.
       </p>
+      <p class="lead lead--short">Location et vente de nacelles. Matériel fiable, ponctualité et réactivité.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Demander un devis</a>
-        <a href="#flotte" class="btn btn-ghost">Découvrir nos équipements</a>
+        <a href="#flotte" class="btn btn-ghost hide-mobile">Découvrir nos équipements</a>
       </div>
       <ul class="hero-values">
         <li><strong>Réactivité</strong><span>Réponse rapide à chaque demande</span></li>
@@ -115,11 +120,12 @@
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Nos services</span>
-        <h2>Ce que nous proposons concrètement</h2>
-        <p>Des prestations claires et adaptées à vos besoins, avec un interlocuteur unique pour suivre votre dossier.</p>
+        <h2>Ce que nous proposons</h2>
+        <p class="hide-mobile">Des prestations claires et adaptées à vos besoins, avec un interlocuteur unique pour suivre votre dossier.</p>
       </div>
+      <p class="scroll-hint" aria-hidden="true">Glissez pour voir les services →</p>
 
-      <div class="grid grid-2">
+      <div class="grid grid-2 scroll-row">
         <article class="card">
           <div class="card-icon">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>
@@ -160,11 +166,12 @@
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Notre matériel</span>
-        <h2>Des équipements sélectionnés pour votre chantier</h2>
-        <p>Nous proposons différents types de nacelles selon les besoins et la disponibilité. Chaque machine est contrôlée avant livraison.</p>
+        <h2>Équipements pour votre chantier</h2>
+        <p class="hide-mobile">Nous proposons différents types de nacelles selon les besoins et la disponibilité. Chaque machine est contrôlée avant livraison.</p>
       </div>
+      <p class="scroll-hint" aria-hidden="true">Glissez pour voir le matériel →</p>
 
-      <div class="grid grid-3">
+      <div class="grid grid-3 scroll-row">
         <article class="fleet-card">
           <div class="fleet-tag">Intérieur &amp; extérieur</div>
           <h3>Nacelles ciseaux</h3>
@@ -206,26 +213,26 @@
     <div class="container avantages-inner">
       <div class="avantages-text">
         <span class="eyebrow">Notre engagement</span>
-        <h2>Une entreprise sérieuse, un suivi de proximité</h2>
-        <p>En tant que structure indépendante, nous misons sur la qualité de notre travail et la relation de confiance avec chaque client. Pas de promesses excessives : des engagements tenus.</p>
+        <h2>Notre engagement</h2>
+        <p class="hide-mobile">En tant que structure indépendante, nous misons sur la qualité de notre travail et la relation de confiance avec chaque client. Pas de promesses excessives : des engagements tenus.</p>
 
-        <ul class="feature-list">
+        <ul class="feature-list feature-list--compact">
           <li>
             <span class="feature-bullet">✓</span>
-            <div><strong>Matériel fiable et entretenu</strong><p>Chaque nacelle est contrôlée avant mise à disposition. Nous ne livrons que du matériel en état de fonctionner correctement.</p></div>
+            <div><strong>Matériel fiable et entretenu</strong><p class="hide-mobile">Chaque nacelle est contrôlée avant mise à disposition. Nous ne livrons que du matériel en état de fonctionner correctement.</p></div>
           </li>
           <li>
             <span class="feature-bullet">✓</span>
-            <div><strong>Ponctualité &amp; rigueur</strong><p>Livraison et reprise aux horaires convenus. Un interlocuteur unique suit votre dossier du devis à la fin de la prestation.</p></div>
+            <div><strong>Ponctualité &amp; rigueur</strong><p class="hide-mobile">Livraison et reprise aux horaires convenus. Un interlocuteur unique suit votre dossier du devis à la fin de la prestation.</p></div>
           </li>
           <li>
             <span class="feature-bullet">✓</span>
-            <div><strong>Réactivité</strong><p>Nous traitons chaque demande rapidement et revenons vers vous avec une proposition claire et détaillée.</p></div>
+            <div><strong>Réactivité</strong><p class="hide-mobile">Nous traitons chaque demande rapidement et revenons vers vous avec une proposition claire et détaillée.</p></div>
           </li>
         </ul>
       </div>
 
-      <aside class="avantages-card">
+      <aside class="avantages-card hide-mobile">
         <h3>Besoin d'une nacelle ?</h3>
         <p>Décrivez-nous votre chantier : nous vous conseillons l'équipement adapté et vous envoyons un devis sans engagement.</p>
         <a href="#contact" class="btn btn-primary btn-block">Demander un devis</a>
@@ -240,31 +247,9 @@
   <!-- ===== Contact ===== -->
   <section class="section section-alt" id="contact">
     <div class="container contact-inner">
-      <div class="contact-info">
+      <div class="contact-head-mobile">
         <span class="eyebrow">Contact</span>
-        <h2>Contactez-nous</h2>
-        <p>Décrivez votre besoin via le formulaire. Nous vous répondons dans les meilleurs délais avec une proposition adaptée à votre chantier.</p>
-
-        <ul class="contact-list">
-          <li>
-            <span class="contact-ic">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
-            </span>
-            <div><strong>E-mail</strong><a href="mailto:contact@nacelpro.fr">contact@nacelpro.fr</a></div>
-          </li>
-          <li>
-            <span class="contact-ic">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            </span>
-            <div><strong>Horaires</strong><span>Lun – Ven : 8h00 – 18h00</span></div>
-          </li>
-          <li>
-            <span class="contact-ic">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            </span>
-            <div><strong>Zone d'intervention</strong><span>Sur devis, selon votre localisation</span></div>
-          </li>
-        </ul>
+        <h2>Demandez un devis</h2>
       </div>
 
       <form class="contact-form" id="contactForm" novalidate>
@@ -304,7 +289,7 @@
 
         <div class="field">
           <label for="message">Message *</label>
-          <textarea id="message" name="message" rows="4" placeholder="Décrivez votre chantier : hauteur de travail, durée, lieu…" required></textarea>
+          <textarea id="message" name="message" rows="3" placeholder="Décrivez votre chantier : hauteur de travail, durée, lieu…" required></textarea>
         </div>
 
         <label class="consent">
@@ -315,6 +300,33 @@
         <button type="submit" class="btn btn-primary btn-block">Envoyer ma demande</button>
         <p class="form-feedback" id="formFeedback" role="status" aria-live="polite"></p>
       </form>
+
+      <div class="contact-info">
+        <span class="eyebrow hide-mobile">Contact</span>
+        <h2 class="hide-mobile">Contactez-nous</h2>
+        <p class="hide-mobile">Décrivez votre besoin via le formulaire. Nous vous répondons dans les meilleurs délais avec une proposition adaptée à votre chantier.</p>
+
+        <ul class="contact-list">
+          <li>
+            <span class="contact-ic">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+            </span>
+            <div><strong>E-mail</strong><a href="mailto:contact@nacelpro.fr">contact@nacelpro.fr</a></div>
+          </li>
+          <li class="hide-mobile">
+            <span class="contact-ic">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </span>
+            <div><strong>Horaires</strong><span>Lun – Ven : 8h00 – 18h00</span></div>
+          </li>
+          <li class="hide-mobile">
+            <span class="contact-ic">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div><strong>Zone d'intervention</strong><span>Sur devis, selon votre localisation</span></div>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -322,12 +334,12 @@
 
   <!-- ===== Footer ===== -->
   <footer class="site-footer">
-    <div class="container footer-inner">
+    <div class="container footer-inner footer-inner--compact">
       <div class="footer-brand">
         <a href="#top" class="logo logo-light">Nacel<span>Pro</span></a>
-        <p>Location et vente de nacelles élévatrices. Une entreprise à taille humaine, au service de vos chantiers.</p>
+        <p class="hide-mobile">Location et vente de nacelles élévatrices. Une entreprise à taille humaine, au service de vos chantiers.</p>
       </div>
-      <div class="footer-col">
+      <div class="footer-col hide-mobile">
         <h4>Navigation</h4>
         <a href="#services">Services</a>
         <a href="#flotte">Notre matériel</a>
@@ -337,9 +349,9 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="mailto:contact@nacelpro.fr">contact@nacelpro.fr</a>
-        <span>Lun – Ven : 8h00 – 18h00</span>
+        <span class="hide-mobile">Lun – Ven : 8h00 – 18h00</span>
       </div>
-      <div class="footer-col">
+      <div class="footer-col footer-col--legal">
         <h4>Légal</h4>
         <a href="mentions-legales.html">Mentions légales</a>
         <a href="mentions-legales.html#confidentialite">Politique de confidentialité</a>
