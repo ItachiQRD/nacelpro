@@ -16,25 +16,29 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupMobileMenu() {
   const burger = document.getElementById('burger');
   const nav = document.querySelector('.main-nav');
+  const backdrop = document.getElementById('navBackdrop');
+  const header = document.querySelector('.site-header');
   if (!burger || !nav) return;
 
   const toggle = (open) => {
     const isOpen = open ?? !nav.classList.contains('open');
     nav.classList.toggle('open', isOpen);
     burger.classList.toggle('open', isOpen);
+    backdrop?.classList.toggle('show', isOpen);
+    header?.classList.toggle('menu-is-open', isOpen);
     burger.setAttribute('aria-expanded', String(isOpen));
     burger.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+    backdrop?.setAttribute('aria-hidden', String(!isOpen));
     document.body.classList.toggle('menu-open', isOpen);
   };
 
   burger.addEventListener('click', () => toggle());
+  backdrop?.addEventListener('click', () => toggle(false));
 
-  // Ferme le menu après un clic sur un lien
   nav.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => toggle(false));
   });
 
-  // Ferme avec la touche Échap
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') toggle(false);
   });
@@ -51,7 +55,7 @@ function setupHeaderScroll() {
 
 /* ===== Lien de navigation actif selon la section visible ===== */
 function setupActiveNav() {
-  const links = Array.from(document.querySelectorAll('.main-nav a[href^="#"]'));
+  const links = Array.from(document.querySelectorAll('.main-nav-links a[href^="#"], .main-nav a[href^="#"]:not(.main-nav-cta)'));
   if (!links.length || !('IntersectionObserver' in window)) return;
 
   const map = new Map();
@@ -75,28 +79,90 @@ function setupActiveNav() {
 
 /* ===== Apparition au défilement ===== */
 function setupScrollReveal() {
-  const targets = document.querySelectorAll('.card, .fleet-card, .feature-list li, .section-head, .avantages-card, .contact-form');
-  if (!targets.length) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (!('IntersectionObserver' in window)) {
-    targets.forEach((el) => el.classList.add('visible'));
+  document.querySelectorAll('main > section, .legal-hero, .legal-content').forEach((section) => {
+    section.classList.add('section-reveal');
+  });
+
+  const selectors = [
+    '.hero-content > *',
+    '.section-head > *',
+    '.scroll-hint',
+    '.card > *',
+    '.fleet-card > *',
+    '.feature-list li',
+    '.avantages-text > .eyebrow',
+    '.avantages-text > h2',
+    '.avantages-text > p',
+    '.avantages-card > *',
+    '.contact-head-mobile > *',
+    '.contact-form > .form-row',
+    '.contact-form > .field',
+    '.contact-form > .consent',
+    '.contact-form > button[type="submit"]',
+    '.contact-info > *',
+    '.contact-list > li',
+    '.hero-values > li',
+    '.legal-hero .container > *',
+    '.legal-content section > h2',
+    '.legal-content section > p',
+    '.legal-content section > ul',
+    '.footer-brand',
+    '.footer-col',
+  ].join(', ');
+
+  const items = document.querySelectorAll(selectors);
+  if (!items.length) return;
+
+  const markVisible = (el, delay = 0) => {
+    el.style.setProperty('--reveal-delay', `${delay}ms`);
+    el.classList.add('visible');
+  };
+
+  if (reduced || !('IntersectionObserver' in window)) {
+    items.forEach((el) => markVisible(el));
+    document.querySelectorAll('.section-reveal').forEach((s) => s.classList.add('is-visible'));
     return;
   }
 
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        entry.target.style.transitionDelay = `${(i % 4) * 80}ms`;
-        entry.target.classList.add('visible');
-        obs.unobserve(entry.target);
-      }
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add('is-visible');
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.06, rootMargin: '-4% 0px -4% 0px' });
 
-  targets.forEach((el) => {
-    el.classList.add('reveal');
-    observer.observe(el);
+  document.querySelectorAll('.section-reveal').forEach((section) => sectionObserver.observe(section));
+
+  const itemObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const scope = el.closest('section, .legal-hero, .legal-content, .contact-inner, .hero-content') || el.parentElement;
+      const group = scope ? Array.from(scope.querySelectorAll('.reveal')) : [el];
+      const index = Math.max(0, group.indexOf(el));
+      markVisible(el, Math.min(index * 75, 450));
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+
+  items.forEach((el) => {
+    if (el.matches('.card-icon, .fleet-tag, .fleet-card .check-list li')) {
+      el.classList.add('reveal', 'reveal--scale');
+    } else if (el.matches('.contact-info > *, .avantages-card > *')) {
+      el.classList.add('reveal', 'reveal--left');
+    } else {
+      el.classList.add('reveal');
+    }
+    itemObserver.observe(el);
   });
+
+  const heroItems = document.querySelectorAll('.hero-content > .reveal');
+  heroItems.forEach((el, i) => {
+    itemObserver.unobserve(el);
+    markVisible(el, 120 + i * 85);
+  });
+  document.querySelector('.hero')?.classList.add('is-visible');
 }
 
 /* ===== Bouton retour en haut ===== */
