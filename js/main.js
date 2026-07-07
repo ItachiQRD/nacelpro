@@ -87,6 +87,7 @@ function setupScrollReveal() {
 
   const selectors = [
     '.hero-content > *',
+    '.hero-visual',
     '.section-head > *',
     '.scroll-hint',
     '.card > *',
