@@ -108,6 +108,11 @@ function setupScrollReveal() {
     '.legal-content section > h2',
     '.legal-content section > p',
     '.legal-content section > ul',
+    '.prose > p',
+    '.engagement-block > *',
+    '.partners-block > *',
+    '.gallery-item',
+    '.partners-list > li',
     '.footer-brand',
     '.footer-col',
   ].join(', ');
@@ -244,7 +249,7 @@ function setupContactForm() {
 function submitForm(form, feedback) {
   const button = form.querySelector('button[type="submit"]');
   const original = button ? button.textContent : '';
-  const config = window.NACELPRO_CONFIG || { contactEmail: 'contact@nacelpro.fr' };
+  const config = window.SITE_CONFIG || window.NACELPRO_CONFIG || { contactEmail: 'contact@doubslevage.fr' };
 
   if (form.elements._honey?.value) {
     showFeedback(feedback, 'Merci ! Votre demande a bien été envoyée.', 'success');
@@ -290,7 +295,7 @@ function submitForm(form, feedback) {
       showFeedback(feedback, 'Merci ! Votre message a bien été envoyé. Nous vous répondons dans les meilleurs délais.', 'success');
     })
     .catch(() => {
-      showFeedback(feedback, 'L\'envoi a échoué. Veuillez réessayer ou nous écrire directement à contact@nacelpro.fr.', 'error');
+      showFeedback(feedback, 'L\'envoi a échoué. Veuillez réessayer ou nous écrire directement à contact@doubslevage.fr.', 'error');
     })
     .finally(() => {
       if (button) {
@@ -314,7 +319,7 @@ function setYear() {
 
 /* ===== Liens WhatsApp ===== */
 function setupWhatsApp() {
-  const config = window.NACELPRO_CONFIG || {};
+  const config = window.SITE_CONFIG || window.NACELPRO_CONFIG || {};
   const num = String(config.whatsappNumber || '').replace(/\D/g, '');
   if (!num) {
     document.querySelectorAll('[data-whatsapp]').forEach((el) => el.classList.add('is-hidden'));

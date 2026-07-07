@@ -1,8 +1,11 @@
-/* Configuration du site */
-window.NACELPRO_CONFIG = {
-  contactEmail: 'contact@nacelpro.fr',
-  formSubject: 'Nouvelle demande de contact — NacelPro',
+/* Configuration du site — DOUBS LEVAGE */
+window.SITE_CONFIG = {
+  contactEmail: 'contact@doubslevage.fr',
+  formSubject: 'Nouvelle demande — DOUBS LEVAGE',
   /* Numéro WhatsApp : indicatif pays + numéro, sans + ni espaces (ex. 33612345678) */
-  whatsappNumber: '33612345678',
-  whatsappMessage: 'Bonjour, je souhaite obtenir un devis pour une nacelle élévatrice.',
+  whatsappNumber: '',
+  whatsappMessage: 'Bonjour, je souhaite obtenir un devis pour un monte meubles.',
 };
+
+/* Rétrocompatibilité */
+window.NACELPRO_CONFIG = window.SITE_CONFIG;
