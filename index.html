@@ -32,6 +32,13 @@
     "description": "Monte meubles avec opérateur et livraisons en étage en Île-de-France.",
     "email": "contact@doubslevage.fr",
     "url": "https://www.doubslevage.fr/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "176 Avenue Charles de Gaulle",
+      "addressLocality": "Neuilly-sur-Seine",
+      "postalCode": "92200",
+      "addressCountry": "FR"
+    },
     "areaServed": "Île-de-France",
     "priceRange": "À partir de 200€ TTC",
     "openingHours": "Mo-Sa 09:00-19:00"
@@ -72,27 +79,24 @@
 
     <!-- H1 Hero -->
     <section class="hero" id="accueil">
-      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-bg" aria-hidden="true">
+        <img
+          src="assets/images/hero-intervention.jpg"
+          alt=""
+          width="1600"
+          height="1000"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
       <div class="container hero-wrap">
-        <div class="hero-grid">
-          <div class="hero-content">
-            <h1>Le spécialiste du monte meubles en Île-de-France</h1>
-            <p class="lead">Depuis 25&nbsp;ans, nous assurons le levage et la livraison en étage pour particuliers et professionnels — jusqu’au 11<sup>e</sup> étage, avec opérateur.</p>
-            <p class="hero-price">Devis gratuit à partir de 200&nbsp;€ TTC.</p>
-            <div class="hero-actions">
-              <a href="#contact" class="btn btn-accent btn-lg">Demander un devis</a>
-              <a href="#contact" class="btn btn-outline-light btn-lg">Nous contacter</a>
-            </div>
-          </div>
-          <div class="hero-visual">
-            <img
-              src="assets/images/hero-intervention.jpg"
-              alt="Intervention monte meubles en livraison d'étage"
-              width="800"
-              height="1000"
-              fetchpriority="high"
-              decoding="async"
-            />
+        <div class="hero-content">
+          <h1>Le spécialiste du monte meubles en Île-de-France</h1>
+          <p class="lead">Depuis 25&nbsp;ans, nous assurons le levage et la livraison en étage pour particuliers et professionnels — jusqu’au 11<sup>e</sup> étage, avec opérateur.</p>
+          <p class="hero-price">Devis gratuit à partir de 200&nbsp;€ TTC.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-accent btn-lg">Demander un devis</a>
+            <a href="#contact" class="btn btn-outline-light btn-lg">Nous contacter</a>
           </div>
         </div>
       </div>
@@ -240,7 +244,7 @@
             <span>Cdiscount</span>
           </li>
           <li class="partner-card">
-            <div class="partner-logo"><img src="assets/images/partners/vir.webp" alt="Logo VIR Transport" width="120" height="48" loading="lazy" /></div>
+            <div class="partner-logo partner-logo--vir"><img src="assets/images/partners/vir.webp" alt="Logo VIR Transport" width="120" height="48" loading="lazy" /></div>
             <span>VIR Transport</span>
           </li>
           <li class="partner-card">
@@ -292,80 +296,145 @@
         <div class="section-head section-head--center">
           <span class="eyebrow">Galerie</span>
           <h2>Sur le terrain</h2>
+          <p>Faites défiler les photos ou cliquez pour les agrandir.</p>
         </div>
-        <div class="gallery-grid">
-          <figure class="gallery-item">
-            <img src="assets/images/galerie-livraison-balcon-bocker.jpg" alt="Livraison en balcon" width="800" height="600" loading="lazy" />
-          </figure>
-          <figure class="gallery-item">
-            <img src="assets/images/galerie-charge-fenetre-etage.jpg" alt="Charge en hauteur" width="600" height="800" loading="lazy" />
-          </figure>
-          <figure class="gallery-item">
-            <img src="assets/images/galerie-livraison-refrigerateur.jpg" alt="Livraison réfrigérateur" width="600" height="800" loading="lazy" />
-          </figure>
-          <figure class="gallery-item">
-            <img src="assets/images/galerie-monte-meuble-immeuble.jpg" alt="Monte meubles immeuble" width="600" height="800" loading="lazy" />
-          </figure>
-          <figure class="gallery-item">
-            <img src="assets/images/galerie-cour-paris-haussmann.jpg" alt="Intervention cour parisienne" width="600" height="800" loading="lazy" />
-          </figure>
-          <figure class="gallery-item">
-            <img src="assets/images/galerie-nacelle-maison-moderne.jpg" alt="Nacelle maison moderne" width="600" height="800" loading="lazy" />
-          </figure>
+        <div class="gallery-carousel" id="galleryCarousel">
+          <button type="button" class="gallery-nav gallery-nav--prev" id="galleryPrev" aria-label="Photos précédentes">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <div class="gallery-track" id="galleryTrack" tabindex="0" aria-label="Galerie photos">
+            <button type="button" class="gallery-item" data-gallery-index="0" aria-label="Voir : Livraison en balcon">
+              <img src="assets/images/galerie-livraison-balcon-bocker.jpg" alt="Livraison en balcon" width="800" height="600" loading="lazy" />
+            </button>
+            <button type="button" class="gallery-item" data-gallery-index="1" aria-label="Voir : Charge en hauteur">
+              <img src="assets/images/galerie-charge-fenetre-etage.jpg" alt="Charge en hauteur" width="600" height="800" loading="lazy" />
+            </button>
+            <button type="button" class="gallery-item" data-gallery-index="2" aria-label="Voir : Livraison réfrigérateur">
+              <img src="assets/images/galerie-livraison-refrigerateur.jpg" alt="Livraison réfrigérateur" width="600" height="800" loading="lazy" />
+            </button>
+            <button type="button" class="gallery-item" data-gallery-index="3" aria-label="Voir : Monte meubles immeuble">
+              <img src="assets/images/galerie-monte-meuble-immeuble.jpg" alt="Monte meubles immeuble" width="600" height="800" loading="lazy" />
+            </button>
+            <button type="button" class="gallery-item" data-gallery-index="4" aria-label="Voir : Intervention cour parisienne">
+              <img src="assets/images/galerie-cour-paris-haussmann.jpg" alt="Intervention cour parisienne" width="600" height="800" loading="lazy" />
+            </button>
+            <button type="button" class="gallery-item" data-gallery-index="5" aria-label="Voir : Nacelle maison moderne">
+              <img src="assets/images/galerie-nacelle-maison-moderne.jpg" alt="Nacelle maison moderne" width="600" height="800" loading="lazy" />
+            </button>
+          </div>
+          <button type="button" class="gallery-nav gallery-nav--next" id="galleryNext" aria-label="Photos suivantes">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
         </div>
       </div>
     </section>
 
     <!-- Contact -->
     <section class="section section-contact" id="contact">
-      <div class="container contact-layout">
-        <div class="contact-intro">
+      <div class="container">
+        <div class="section-head section-head--center section-head--light">
           <span class="eyebrow">Contact</span>
           <h2>Demandez votre devis</h2>
-          <p>Réponse rapide · Lun – Sam, 9h – 19h · À partir de 200&nbsp;€ TTC</p>
-          <div class="contact-actions">
-            <a href="#" data-whatsapp class="btn btn-whatsapp btn-lg">Nous contacter</a>
-            <a href="mailto:contact@doubslevage.fr" class="btn btn-outline-light">contact@doubslevage.fr</a>
+          <p>Réponse rapide · À partir de 200&nbsp;€ TTC</p>
+        </div>
+        <div class="contact-layout">
+          <aside class="contact-info">
+            <div class="contact-info-head">
+              <span class="eyebrow">Coordonnées</span>
+              <h3 class="contact-info-title">Nous trouver</h3>
+            </div>
+            <ul class="contact-details">
+              <li>
+                <span class="contact-ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </span>
+                <div>
+                  <strong>Adresse</strong>
+                  <p>176 Avenue Charles de Gaulle<br />92200 Neuilly-sur-Seine</p>
+                </div>
+              </li>
+              <li data-phone-row class="is-hidden">
+                <span class="contact-ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </span>
+                <div>
+                  <strong>Téléphone</strong>
+                  <p><a href="#" data-phone-link></a></p>
+                </div>
+              </li>
+              <li>
+                <span class="contact-ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+                </span>
+                <div>
+                  <strong>E-mail</strong>
+                  <p><a href="mailto:contact@doubslevage.fr">contact@doubslevage.fr</a></p>
+                </div>
+              </li>
+              <li>
+                <span class="contact-ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </span>
+                <div>
+                  <strong>Horaires</strong>
+                  <p>Lun – Sam : 9h – 19h</p>
+                </div>
+              </li>
+            </ul>
+            <div class="contact-actions">
+              <a href="#" data-whatsapp class="btn btn-whatsapp">Nous contacter</a>
+              <a href="mailto:contact@doubslevage.fr" class="btn btn-outline-light">Écrire un e-mail</a>
+            </div>
+          </aside>
+
+          <form class="contact-form" id="contactForm" novalidate>
+            <input type="text" name="_honey" id="honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Nom *</label>
+                <input type="text" id="name" name="name" placeholder="Jean Dupont" required />
+              </div>
+              <div class="field">
+                <label for="phone">Téléphone</label>
+                <input type="tel" id="phone" name="phone" placeholder="06 12 34 56 78" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="email">E-mail *</label>
+              <input type="email" id="email" name="email" placeholder="jean@exemple.fr" required />
+            </div>
+            <div class="field">
+              <label for="need">Besoin</label>
+              <select id="need" name="need">
+                <option value="">Sélectionnez…</option>
+                <option value="Monte meubles avec opérateur">Monte meubles avec opérateur</option>
+                <option value="Nacelle tractable">Nacelle tractable</option>
+                <option value="Livraison en étage">Livraison en étage</option>
+                <option value="Autre demande">Autre</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" rows="3" placeholder="Étage, objets, adresse…" required></textarea>
+            </div>
+            <label class="consent">
+              <input type="checkbox" id="consent" required />
+              <span>J'accepte d'être recontacté · <a href="mentions-legales.html#confidentialite" class="text-link">Confidentialité</a></span>
+            </label>
+            <button type="submit" class="btn btn-accent btn-lg btn-block">Demander un devis</button>
+            <p class="form-feedback" id="formFeedback" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="contact-map">
+            <iframe
+              title="Carte — 176 Avenue Charles de Gaulle, Neuilly-sur-Seine"
+              src="https://maps.google.com/maps?q=176%20Avenue%20Charles%20de%20Gaulle%2C%2092200%20Neuilly-sur-Seine&z=15&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
-
-        <form class="contact-form" id="contactForm" novalidate>
-          <input type="text" name="_honey" id="honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <div class="form-row">
-            <div class="field">
-              <label for="name">Nom *</label>
-              <input type="text" id="name" name="name" placeholder="Jean Dupont" required />
-            </div>
-            <div class="field">
-              <label for="phone">Téléphone</label>
-              <input type="tel" id="phone" name="phone" placeholder="06 12 34 56 78" />
-            </div>
-          </div>
-          <div class="field">
-            <label for="email">E-mail *</label>
-            <input type="email" id="email" name="email" placeholder="jean@exemple.fr" required />
-          </div>
-          <div class="field">
-            <label for="need">Besoin</label>
-            <select id="need" name="need">
-              <option value="">Sélectionnez…</option>
-              <option value="Monte meubles avec opérateur">Monte meubles avec opérateur</option>
-              <option value="Nacelle tractable">Nacelle tractable</option>
-              <option value="Livraison en étage">Livraison en étage</option>
-              <option value="Autre demande">Autre</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="message">Message *</label>
-            <textarea id="message" name="message" rows="3" placeholder="Étage, objets, adresse…" required></textarea>
-          </div>
-          <label class="consent">
-            <input type="checkbox" id="consent" required />
-            <span>J'accepte d'être recontacté · <a href="mentions-legales.html#confidentialite" class="text-link">Confidentialité</a></span>
-          </label>
-          <button type="submit" class="btn btn-accent btn-lg btn-block">Demander un devis</button>
-          <p class="form-feedback" id="formFeedback" role="status" aria-live="polite"></p>
-        </form>
       </div>
     </section>
 
@@ -388,7 +457,10 @@
       </div>
       <div class="footer-col">
         <h3>Contact</h3>
+        <span>176 Avenue Charles de Gaulle</span>
+        <span>92200 Neuilly-sur-Seine</span>
         <a href="mailto:contact@doubslevage.fr">contact@doubslevage.fr</a>
+        <a href="#" data-phone-link class="is-hidden"></a>
         <span>Lun – Sam : 9h – 19h</span>
       </div>
       <div class="footer-col">
@@ -409,6 +481,25 @@
   <button class="back-to-top" id="backToTop" aria-label="Haut de page">
     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
   </button>
+
+  <!-- Lightbox galerie -->
+  <div class="lightbox" id="lightbox" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Diaporama galerie">
+    <div class="lightbox-backdrop" data-lightbox-close></div>
+    <button type="button" class="lightbox-close" data-lightbox-close aria-label="Fermer">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <button type="button" class="lightbox-nav lightbox-prev" data-lightbox-prev aria-label="Image précédente">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <figure class="lightbox-figure">
+      <img id="lightboxImg" src="" alt="" />
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button type="button" class="lightbox-nav lightbox-next" data-lightbox-next aria-label="Image suivante">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+    <p class="lightbox-counter" id="lightboxCounter" aria-live="polite"></p>
+  </div>
 
   <script src="js/config.js"></script>
   <script src="js/main.js"></script>
