@@ -83,17 +83,16 @@ function setupScrollReveal() {
 
   const selectors = [
     '.hero-content > *',
-    '.stats-row > li',
+    '.strength-card',
     '.section-head > *',
-    '.service-item',
+    '.service-card',
     '.materiel-card',
-    '.why-intro > *',
-    '.why-list > li',
-    '.partners-label',
     '.partner-card',
+    '.review-card',
     '.gallery-item',
     '.contact-intro > *',
     '.contact-form',
+    '.section-cta',
     '.footer-brand',
     '.footer-col',
     '.legal-hero .container > *',
@@ -118,19 +117,17 @@ function setupScrollReveal() {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
-      const scope = el.closest('section, .hero-content, .contact-layout, .why-layout, .stats-row, .services-grid, .materiel-grid, .gallery-grid, .partners-grid') || el.parentElement;
+      const scope = el.closest('section, .hero-content, .contact-layout, .strengths-grid, .services-grid, .materiel-grid, .partners-grid, .reviews-grid, .gallery-grid') || el.parentElement;
       const group = scope ? Array.from(scope.querySelectorAll('.reveal')) : [el];
       const index = Math.max(0, group.indexOf(el));
-      markVisible(el, Math.min(index * 90, 480));
+      markVisible(el, Math.min(index * 80, 400));
       obs.unobserve(el);
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
 
   items.forEach((el) => {
-    if (el.matches('.materiel-card, .gallery-item, .stats-row > li')) {
+    if (el.matches('.materiel-card, .gallery-item, .partner-card, .strength-card')) {
       el.classList.add('reveal', 'reveal--scale');
-    } else if (el.matches('.why-list > li, .service-item')) {
-      el.classList.add('reveal', 'reveal--left');
     } else {
       el.classList.add('reveal');
     }
@@ -139,7 +136,7 @@ function setupScrollReveal() {
 
   document.querySelectorAll('.hero-content > .reveal').forEach((el, i) => {
     itemObserver.unobserve(el);
-    markVisible(el, 80 + i * 100);
+    markVisible(el, 60 + i * 90);
   });
 }
 
