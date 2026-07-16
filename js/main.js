@@ -81,41 +81,24 @@ function setupActiveNav() {
 function setupScrollReveal() {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  document.querySelectorAll('main > section, .legal-hero, .legal-content').forEach((section) => {
-    section.classList.add('section-reveal');
-  });
-
   const selectors = [
     '.hero-content > *',
-    '.hero-visual',
+    '.stats-row > li',
     '.section-head > *',
-    '.scroll-hint',
-    '.card > *',
-    '.fleet-card > *',
-    '.feature-list li',
-    '.avantages-text > .eyebrow',
-    '.avantages-text > h2',
-    '.avantages-text > p',
-    '.avantages-card > *',
-    '.contact-head-mobile > *',
-    '.contact-form > .form-row',
-    '.contact-form > .field',
-    '.contact-form > .consent',
-    '.contact-form > button[type="submit"]',
-    '.contact-info > *',
-    '.contact-list > li',
-    '.hero-values > li',
+    '.service-item',
+    '.materiel-card',
+    '.why-intro > *',
+    '.why-list > li',
+    '.partners-label',
+    '.partners-marquee > li',
+    '.gallery-item',
+    '.contact-intro > *',
+    '.contact-form',
+    '.footer-brand',
+    '.footer-col',
     '.legal-hero .container > *',
     '.legal-content section > h2',
     '.legal-content section > p',
-    '.legal-content section > ul',
-    '.prose > p',
-    '.engagement-block > *',
-    '.partners-block > *',
-    '.gallery-item',
-    '.partners-list > li',
-    '.footer-brand',
-    '.footer-col',
   ].join(', ');
 
   const items = document.querySelectorAll(selectors);
@@ -128,34 +111,25 @@ function setupScrollReveal() {
 
   if (reduced || !('IntersectionObserver' in window)) {
     items.forEach((el) => markVisible(el));
-    document.querySelectorAll('.section-reveal').forEach((s) => s.classList.add('is-visible'));
     return;
   }
-
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) entry.target.classList.add('is-visible');
-    });
-  }, { threshold: 0.06, rootMargin: '-4% 0px -4% 0px' });
-
-  document.querySelectorAll('.section-reveal').forEach((section) => sectionObserver.observe(section));
 
   const itemObserver = new IntersectionObserver((entries, obs) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
-      const scope = el.closest('section, .legal-hero, .legal-content, .contact-inner, .hero-content') || el.parentElement;
+      const scope = el.closest('section, .hero-content, .contact-layout, .why-layout, .stats-row, .services-grid, .materiel-grid, .gallery-grid, .partners-marquee') || el.parentElement;
       const group = scope ? Array.from(scope.querySelectorAll('.reveal')) : [el];
       const index = Math.max(0, group.indexOf(el));
-      markVisible(el, Math.min(index * 75, 450));
+      markVisible(el, Math.min(index * 90, 480));
       obs.unobserve(el);
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
   items.forEach((el) => {
-    if (el.matches('.card-icon, .fleet-tag, .fleet-card .check-list li')) {
+    if (el.matches('.materiel-card, .gallery-item, .stats-row > li')) {
       el.classList.add('reveal', 'reveal--scale');
-    } else if (el.matches('.contact-info > *, .avantages-card > *')) {
+    } else if (el.matches('.why-list > li, .service-item')) {
       el.classList.add('reveal', 'reveal--left');
     } else {
       el.classList.add('reveal');
@@ -163,12 +137,10 @@ function setupScrollReveal() {
     itemObserver.observe(el);
   });
 
-  const heroItems = document.querySelectorAll('.hero-content > .reveal');
-  heroItems.forEach((el, i) => {
+  document.querySelectorAll('.hero-content > .reveal').forEach((el, i) => {
     itemObserver.unobserve(el);
-    markVisible(el, 120 + i * 85);
+    markVisible(el, 80 + i * 100);
   });
-  document.querySelector('.hero')?.classList.add('is-visible');
 }
 
 /* ===== Bouton retour en haut ===== */
@@ -277,7 +249,7 @@ function submitForm(form, feedback) {
     name: form.elements.name.value,
     email: form.elements.email.value,
     message: body,
-    _subject: config.formSubject || 'Nouvelle demande — NacelPro',
+    _subject: config.formSubject || 'Nouvelle demande — DOUBS LEVAGE',
     _template: 'table',
     _captcha: 'false',
   };
