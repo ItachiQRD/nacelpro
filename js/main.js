@@ -90,7 +90,7 @@ function setupScrollReveal() {
     '.why-intro > *',
     '.why-list > li',
     '.partners-label',
-    '.partners-marquee > li',
+    '.partner-card',
     '.gallery-item',
     '.contact-intro > *',
     '.contact-form',
@@ -118,7 +118,7 @@ function setupScrollReveal() {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       const el = entry.target;
-      const scope = el.closest('section, .hero-content, .contact-layout, .why-layout, .stats-row, .services-grid, .materiel-grid, .gallery-grid, .partners-marquee') || el.parentElement;
+      const scope = el.closest('section, .hero-content, .contact-layout, .why-layout, .stats-row, .services-grid, .materiel-grid, .gallery-grid, .partners-grid') || el.parentElement;
       const group = scope ? Array.from(scope.querySelectorAll('.reveal')) : [el];
       const index = Math.max(0, group.indexOf(el));
       markVisible(el, Math.min(index * 90, 480));
