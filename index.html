@@ -155,14 +155,14 @@
             <span class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </span>
-            <h3>Monte meubles avec opérateur</h3>
+            <h3>Monte meubles</h3>
             <p>Montée et descente de meubles, électroménagers et volumes.</p>
           </article>
           <article class="service-card">
             <span class="service-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
             </span>
-            <h3>Nacelles tractables</h3>
+            <h3>Monte meuble rétractable</h3>
             <p>Cours intérieures et passages trop étroits pour un camion.</p>
           </article>
           <article class="service-card">
@@ -189,25 +189,25 @@
         <div class="materiel-grid">
           <article class="materiel-card">
             <div class="materiel-card__media">
-              <img src="assets/images/galerie-livraison-balcon-bocker.jpg" alt="Monte meubles sur véhicule" width="640" height="480" loading="lazy" />
+              <img src="assets/images/materiel-monte-meuble-classique.jpg" alt="Monte meuble classique sur véhicule" width="640" height="800" loading="lazy" />
             </div>
             <div class="materiel-card__body">
-              <h3>Sur véhicule</h3>
+              <h3>Monte meuble classique</h3>
               <p>Immeubles et résidences — jusqu'au 11<sup>e</sup> étage.</p>
             </div>
           </article>
           <article class="materiel-card">
             <div class="materiel-card__media">
-              <img src="assets/images/galerie-nacelle-maison-moderne.jpg" alt="Monte meubles tractable" width="640" height="480" loading="lazy" />
+              <img src="assets/images/materiel-monte-meuble-retractable.jpg" alt="Monte meuble rétractable" width="800" height="600" loading="lazy" />
             </div>
             <div class="materiel-card__body">
-              <h3>Tractables</h3>
+              <h3>Monte meuble rétractable</h3>
               <p>Quand le camion ne peut pas accéder au chantier.</p>
             </div>
           </article>
           <article class="materiel-card">
             <div class="materiel-card__media">
-              <img src="assets/images/galerie-livraison-refrigerateur.jpg" alt="Levage de gros volumes" width="640" height="480" loading="lazy" />
+              <img src="assets/images/galerie-livraison-refrigerateur.jpg" alt="Levage de gros volumes" width="640" height="800" loading="lazy" />
             </div>
             <div class="materiel-card__body">
               <h3>Gros volumes</h3>
@@ -278,7 +278,7 @@
           </blockquote>
           <blockquote class="review-card">
             <div class="review-stars" aria-label="5 sur 5">★★★★★</div>
-            <p>« Accès impossible au camion : leur nacelle tractable a tout réglé. Devis clair. »</p>
+            <p>« Accès impossible au camion : leur monte meuble rétractable a tout réglé. Devis clair. »</p>
             <footer>— Karim B., Boulogne</footer>
           </blockquote>
           <blockquote class="review-card">
@@ -296,7 +296,6 @@
         <div class="section-head section-head--center">
           <span class="eyebrow">Galerie</span>
           <h2>Sur le terrain</h2>
-          <p>Faites défiler les photos ou cliquez pour les agrandir.</p>
         </div>
         <div class="gallery-carousel" id="galleryCarousel">
           <button type="button" class="gallery-nav gallery-nav--prev" id="galleryPrev" aria-label="Photos précédentes">
@@ -318,8 +317,8 @@
             <button type="button" class="gallery-item" data-gallery-index="4" aria-label="Voir : Intervention cour parisienne">
               <img src="assets/images/galerie-cour-paris-haussmann.jpg" alt="Intervention cour parisienne" width="600" height="800" loading="lazy" />
             </button>
-            <button type="button" class="gallery-item" data-gallery-index="5" aria-label="Voir : Nacelle maison moderne">
-              <img src="assets/images/galerie-nacelle-maison-moderne.jpg" alt="Nacelle maison moderne" width="600" height="800" loading="lazy" />
+            <button type="button" class="gallery-item" data-gallery-index="5" aria-label="Voir : Monte meuble maison moderne">
+              <img src="assets/images/galerie-nacelle-maison-moderne.jpg" alt="Monte meuble maison moderne" width="600" height="800" loading="lazy" />
             </button>
           </div>
           <button type="button" class="gallery-nav gallery-nav--next" id="galleryNext" aria-label="Photos suivantes">
@@ -389,6 +388,19 @@
 
           <form class="contact-form" id="contactForm" novalidate>
             <input type="text" name="_honey" id="honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="field">
+              <label for="civilite">Civilité *</label>
+              <select id="civilite" name="civilite" required>
+                <option value="">Sélectionnez…</option>
+                <option value="Mme">Mme</option>
+                <option value="Mr">Mr</option>
+                <option value="Société">Société</option>
+              </select>
+            </div>
+            <div class="field is-hidden" id="companyField">
+              <label for="company">Nom de la société</label>
+              <input type="text" id="company" name="company" placeholder="Raison sociale" />
+            </div>
             <div class="form-row">
               <div class="field">
                 <label for="name">Nom *</label>
@@ -404,13 +416,12 @@
               <input type="email" id="email" name="email" placeholder="jean@exemple.fr" required />
             </div>
             <div class="field">
-              <label for="need">Besoin</label>
-              <select id="need" name="need">
+              <label for="need">Besoin *</label>
+              <select id="need" name="need" required>
                 <option value="">Sélectionnez…</option>
-                <option value="Monte meubles avec opérateur">Monte meubles avec opérateur</option>
-                <option value="Nacelle tractable">Nacelle tractable</option>
-                <option value="Livraison en étage">Livraison en étage</option>
-                <option value="Autre demande">Autre</option>
+                <option value="Monte meuble classique">Monte meuble classique</option>
+                <option value="Monte meuble rétractable">Monte meuble rétractable</option>
+                <option value="Autres">Autres</option>
               </select>
             </div>
             <div class="field">

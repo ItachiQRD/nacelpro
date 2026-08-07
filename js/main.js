@@ -163,10 +163,22 @@ function setupContactForm() {
   if (!form) return;
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const civilite = form.elements.civilite;
+  const companyField = document.getElementById('companyField');
+
+  const toggleCompany = () => {
+    const isSociete = civilite?.value === 'Société';
+    companyField?.classList.toggle('is-hidden', !isSociete);
+    if (!isSociete && form.elements.company) form.elements.company.value = '';
+  };
+  civilite?.addEventListener('change', toggleCompany);
+  toggleCompany();
 
   const validators = {
+    civilite: (v) => (v ? '' : 'Veuillez indiquer votre civilité.'),
     name: (v) => (v.trim().length >= 2 ? '' : 'Veuillez indiquer votre nom.'),
     email: (v) => (emailRegex.test(v.trim()) ? '' : 'Adresse e-mail invalide.'),
+    need: (v) => (v ? '' : 'Veuillez sélectionner un besoin.'),
     message: (v) => (v.trim().length >= 10 ? '' : 'Votre message doit faire au moins 10 caractères.'),
   };
 
@@ -182,12 +194,12 @@ function setupContactForm() {
     el.textContent = msg;
   };
 
-  // Validation en direct après la première saisie
   Object.keys(validators).forEach((name) => {
     const field = form.elements[name];
     if (field) {
+      const eventName = field.tagName === 'SELECT' ? 'change' : 'input';
       field.addEventListener('blur', () => setError(field, validators[name](field.value)));
-      field.addEventListener('input', () => {
+      field.addEventListener(eventName, () => {
         if (field.classList.contains('invalid')) setError(field, validators[name](field.value));
       });
     }
@@ -241,9 +253,11 @@ function submitForm(form, feedback) {
   const need = form.elements.need?.value || '';
   const company = form.elements.company?.value || '';
   const phone = form.elements.phone?.value || '';
+  const civilite = form.elements.civilite?.value || '';
   const body = [
     form.elements.message.value,
-    need && `\n\nBesoin : ${need}`,
+    civilite && `\n\nCivilité : ${civilite}`,
+    need && `\nBesoin : ${need}`,
     company && `\nSociété : ${company}`,
     phone && `\nTéléphone : ${phone}`,
   ].filter(Boolean).join('');
@@ -266,6 +280,7 @@ function submitForm(form, feedback) {
     .then((data) => {
       if (!data.success) throw new Error('Échec envoi');
       form.reset();
+      document.getElementById('companyField')?.classList.add('is-hidden');
       form.querySelectorAll('.field-error').forEach((el) => (el.textContent = ''));
       form.querySelectorAll('.invalid').forEach((el) => el.classList.remove('invalid'));
       showFeedback(feedback, 'Merci ! Votre message a bien été envoyé. Nous vous répondons dans les meilleurs délais.', 'success');
@@ -334,6 +349,11 @@ function setupGalleryCarousel() {
   const next = document.getElementById('galleryNext');
   if (!track || !prev || !next) return;
 
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let autoTimer = null;
+  let resumeTimer = null;
+  let paused = false;
+
   const getStep = () => {
     const item = track.querySelector('.gallery-item');
     if (!item) return track.clientWidth * 0.8;
@@ -349,26 +369,67 @@ function setupGalleryCarousel() {
   };
 
   const scrollByDir = (dir) => {
-    track.scrollBy({ left: dir * getStep(), behavior: 'smooth' });
+    const max = track.scrollWidth - track.clientWidth;
+    if (dir > 0 && track.scrollLeft >= max - 2) {
+      track.scrollTo({ left: 0, behavior: 'smooth' });
+    } else if (dir < 0 && track.scrollLeft <= 2) {
+      track.scrollTo({ left: max, behavior: 'smooth' });
+    } else {
+      track.scrollBy({ left: dir * getStep(), behavior: 'smooth' });
+    }
   };
 
-  prev.addEventListener('click', () => scrollByDir(-1));
-  next.addEventListener('click', () => scrollByDir(1));
+  const stopAuto = () => {
+    paused = true;
+    if (autoTimer) window.clearInterval(autoTimer);
+    autoTimer = null;
+    if (resumeTimer) window.clearTimeout(resumeTimer);
+    resumeTimer = window.setTimeout(() => {
+      paused = false;
+      startAuto();
+    }, 6000);
+  };
+
+  const startAuto = () => {
+    if (reduced || paused || autoTimer) return;
+    autoTimer = window.setInterval(() => scrollByDir(1), 4500);
+  };
+
+  prev.addEventListener('click', () => {
+    stopAuto();
+    scrollByDir(-1);
+  });
+  next.addEventListener('click', () => {
+    stopAuto();
+    scrollByDir(1);
+  });
   track.addEventListener('scroll', updateButtons, { passive: true });
+  track.addEventListener('pointerdown', stopAuto, { passive: true });
+  track.addEventListener('wheel', stopAuto, { passive: true });
+  track.addEventListener('mouseenter', () => {
+    if (autoTimer) window.clearInterval(autoTimer);
+    autoTimer = null;
+  });
+  track.addEventListener('mouseleave', () => {
+    if (!paused) startAuto();
+  });
   window.addEventListener('resize', updateButtons, { passive: true });
 
   track.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
+      stopAuto();
       scrollByDir(-1);
     }
     if (e.key === 'ArrowRight') {
       e.preventDefault();
+      stopAuto();
       scrollByDir(1);
     }
   });
 
   updateButtons();
+  startAuto();
 }
 
 /* ===== Lightbox galerie ===== */
